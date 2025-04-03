@@ -23,7 +23,7 @@ create_tables_queries = [
         death_place VARCHAR(255),
         gender VARCHAR(20) CHECK (gender IN ('мужской', 'женский', 'другое', 'неизвестно')),
         bio TEXT,
-        photo VARCHAR(255)
+        photo TEXT
     );
     ''',
     '''
@@ -31,7 +31,7 @@ create_tables_queries = [
         relationship_id SERIAL PRIMARY KEY,
         person1_id INTEGER REFERENCES people(person_id) NOT NULL,
         person2_id INTEGER REFERENCES people(person_id) NOT NULL,
-        relationship_type VARCHAR(50) CHECK (relationship_type IN ('родитель-ребенок', 'супруг', 'брат-сестра', 'другое')),
+        relationship_type VARCHAR(50) ,
         start_date DATE,
         end_date DATE
     );
