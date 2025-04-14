@@ -10,9 +10,13 @@ con = psycopg2.connect(
 
 curs = con.cursor()
 
-
 curs.execute("""
-    SELECT people.first_name, people.last_name, traits.trait_name
+    SELECT 
+        people.first_name, 
+        people.last_name, 
+        traits.trait_name, 
+        inheritance.value, 
+        inheritance.notes
     FROM people
     RIGHT JOIN inheritance ON people.person_id = inheritance.person_id
     RIGHT JOIN traits ON inheritance.trait_id = traits.trait_id;
@@ -21,3 +25,5 @@ curs.execute("""
 results = curs.fetchall()
 for row in results:
     print(row)
+
+con.close()
